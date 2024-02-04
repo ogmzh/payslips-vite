@@ -25,7 +25,6 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { usePayslips } from "@/data/queries";
 import { OrderDirection } from "@/lib/types";
-import { handleDownload } from "@/lib/utils";
 
 type DashboardProps = {
   setIsTop: (isTop: boolean) => void;
@@ -56,9 +55,10 @@ export const Dashboard = ({ setIsTop }: DashboardProps) => {
   };
 
   return (
-    <AnimatedPage forward>
-      <div className="flex flex-1 flex-col items-center justify-center">
-        <div className="mt-2 flex flex-col items-center gap-4 self-center pr-6 sm:flex-row sm:self-end">
+    <AnimatedPage forward className="flex flex-col items-center">
+      <div className="flex flex-1 flex-col items-center justify-center gap-4 ">
+        <div
+          className={`flex flex-col items-center gap-4 self-center sm:flex-row sm:self-end ${!hasNext && "opacity-0"}`}>
           <Label htmlFor="sort-by-select">Sort By Date</Label>
           <Select
             value={orderDirection}
@@ -75,39 +75,37 @@ export const Dashboard = ({ setIsTop }: DashboardProps) => {
           </Select>
         </div>
         <ScrollArea
-          className="h-[80vh] px-5 py-5"
+          className="h-[calc(100vh-270px)] sm:h-[calc(100vh-220px)]"
           onScrollCapture={(e) => handleScroll(e)}>
           <div className="flex flex-col gap-10 lg:grid lg:grid-cols-2 lg:gap-8 xl:grid-cols-3">
             {isLoading &&
               Array.from({ length: 6 }).map((_, i) => (
                 <div key={i} className="flex flex-col space-y-3">
                   <div className="flex flex-col justify-between gap-4">
-                    <Skeleton className="h-4 w-[240px]" />
-                    <Skeleton className="h-2 w-[250px]" />
+                    <Skeleton className="h-4 w-[140px] sm:w-[240px]" />
+                    <Skeleton className="h-2 w-[150px] sm:w-[250px]" />
                   </div>
-                  <Skeleton className="h-[420px] w-[350px] rounded-xl" />
+                  <Skeleton className="h-[320px] w-[250px] rounded-xl sm:h-[420px] sm:w-[350px]" />
                 </div>
               ))}
             {payslips &&
               payslips.map((payslip) => (
                 <PayslipCard
+                  tabIndex={0}
                   key={payslip.id}
                   payslip={payslip}
-                  onNavigateClick={() => handleNavigateDetails(payslip.id)}
-                  onDownloadClick={() =>
-                    handleDownload(
-                      payslips?.find((item) => payslip.id === item.id)
-                    )
-                  }
+                  className="cursor-pointer"
+                  onClick={() => handleNavigateDetails(payslip.id)}
                 />
               ))}
           </div>
         </ScrollArea>
+
         <Pagination>
           <PaginationContent>
             <PaginationItem
-              className="cursor-pointer select-none"
-              onClick={() => setPage(Math.max(page - 1, 0))}>
+              onClick={() => setPage(Math.max(page - 1, 0))}
+              tabIndex={0}>
               <PaginationPrevious />
             </PaginationItem>
             {Array.from({ length: 3 }).map((_, i) => (
@@ -118,7 +116,9 @@ export const Dashboard = ({ setIsTop }: DashboardProps) => {
             <PaginationItem className={hasNext ? "" : "hidden"}>
               <PaginationEllipsis />
             </PaginationItem>
-            <PaginationItem onClick={() => hasNext && setPage(page + 1)}>
+            <PaginationItem
+              onClick={() => hasNext && setPage(page + 1)}
+              tabIndex={0}>
               <PaginationNext />
             </PaginationItem>
           </PaginationContent>
