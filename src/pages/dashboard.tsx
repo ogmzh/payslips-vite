@@ -80,7 +80,10 @@ export const Dashboard = ({ setIsTop }: DashboardProps) => {
           <div className="flex flex-col gap-10 lg:grid lg:grid-cols-2 lg:gap-8 xl:grid-cols-3">
             {isLoading &&
               Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="flex flex-col space-y-3">
+                <div
+                  key={i}
+                  className="flex flex-col space-y-3"
+                  data-testid="item-skeleton">
                   <div className="flex flex-col justify-between gap-4">
                     <Skeleton className="h-4 w-[140px] sm:w-[240px]" />
                     <Skeleton className="h-2 w-[150px] sm:w-[250px]" />

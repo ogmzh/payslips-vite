@@ -43,7 +43,7 @@ export const PayslipDetails = () => {
     <AnimatedPage className="flex flex-col items-center overflow-auto py-5">
       {!payslip && !isLoading && <NotFound />}
       {isLoading && (
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-4" data-testid="payslip-details-skeleton">
           <Skeleton className="h-4 w-[300px] sm:w-[400px]" />
           <Skeleton className="h-[450px] w-[250px] sm:w-[600px]" />
           <div className="flex flex-col justify-between gap-4">
