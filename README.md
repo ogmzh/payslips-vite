@@ -10,6 +10,8 @@ Tailwind CSS
 shadcn/ui
 ```
 
+Tests done with `vitest` and `react-testing-library`.
+
 ## Minimum Requirements
 ### Common
 ```
