@@ -16,7 +16,7 @@ export const AnimatedRoutes = ({
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Dashboard setIsTop={setIsTop} />} />
         <Route path="/dashboard" element={<Dashboard setIsTop={setIsTop} />} />
-        <Route path="/payroll/:id" element={<PayslipDetails />} />
+        <Route path="/payslip/:id" element={<PayslipDetails />} />
       </Routes>
     </AnimatePresence>
   );

@@ -50,7 +50,7 @@ export const Dashboard = ({ setIsTop }: DashboardProps) => {
   };
 
   const handleNavigateDetails = (id: string) => {
-    navigate(`/payroll/${id}`);
+    navigate(`/payslip/${id}`);
   };
 
   return (
