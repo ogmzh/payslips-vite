@@ -1,12 +1,12 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.example.app',
+  appId: 'com.payslips',
   appName: 'payslips-vite',
   webDir: 'dist',
   server: {
     androidScheme: 'https',
-    // url: 'http://192.168.100.135:5173',
+    // url: 'http://127.0.0.1:3000',
     cleartext: true,
   }
 };
