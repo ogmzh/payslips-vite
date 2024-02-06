@@ -46,19 +46,14 @@ export const handleDownload = async (payslip?: Payslip) => {
 
   const { file, fromDate } = payslip;
   const outputFileName = format(fromDate, "MM-yyyy") + ".jpeg";
-
   if (Capacitor.isNativePlatform()) {
-    try {
-      const base64 = await convertImageToBase64(file.slice(1));
-      await Filesystem.writeFile({
-        recursive: true,
-        path: outputFileName,
-        data: base64,
-        directory: Directory.Documents,
-      });
-    } catch (error) {
-      console.error("write error", error);
-    }
+    const base64 = await convertImageToBase64(file.slice(1));
+    await Filesystem.writeFile({
+      recursive: true,
+      path: outputFileName,
+      data: base64,
+      directory: Directory.Documents
+    });
   } else {
     const link = document.createElement("a");
     link.href = file;

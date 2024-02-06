@@ -7,7 +7,6 @@ import { Label } from "@/components/ui/label";
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -75,7 +74,7 @@ export const Dashboard = ({ setIsTop }: DashboardProps) => {
           </Select>
         </div>
         <ScrollArea
-          className="h-[calc(100vh-270px)] sm:h-[calc(100vh-220px)]"
+          className="h-[calc(100vh-270px)] sm:h-[calc(100vh-220px)] px-4"
           onScrollCapture={(e) => handleScroll(e)}>
           <div className="flex flex-col gap-10 lg:grid lg:grid-cols-2 lg:gap-8 xl:grid-cols-3">
             {isLoading &&
@@ -111,14 +110,11 @@ export const Dashboard = ({ setIsTop }: DashboardProps) => {
               tabIndex={0}>
               <PaginationPrevious />
             </PaginationItem>
-            {Array.from({ length: 3 }).map((_, i) => (
+            {Array.from({ length: 4 }).map((_, i) => (
               <PaginationItem key={i} onClick={() => setPage(i)}>
                 <PaginationLink isActive={i === page}>{i + 1}</PaginationLink>
               </PaginationItem>
             ))}
-            <PaginationItem className={hasNext ? "" : "hidden"}>
-              <PaginationEllipsis />
-            </PaginationItem>
             <PaginationItem
               onClick={() => hasNext && setPage(page + 1)}
               tabIndex={0}>
