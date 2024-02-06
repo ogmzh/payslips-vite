@@ -22,7 +22,7 @@ export const Header = ({ isTop }: { isTop: boolean }) => {
       className={`flex h-20 w-full justify-center transition-all duration-300 ${
         isTop ? "border-b-2 border-transparent" : "border-b-2"
       } ${Capacitor.isNativePlatform() ? "mb-2 px-8 py-12" : "mb-4 p-4"}`}>
-      {Capacitor.isNativePlatform() && pathname.startsWith("/payroll") && (
+      {Capacitor.isNativePlatform() && pathname.startsWith("/payslip") && (
         <Link to="/">
           <ChevronLeft className="h-8 w-8" />
         </Link>
