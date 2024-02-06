@@ -45,7 +45,7 @@ describe("PayslipDetails", () => {
     });
 
     renderComponent();
-    const notFound = screen.getByText(/payslip not found/i);
+    const notFound = screen.getByText(/not found/i);
     expect(notFound).toBeInTheDocument();
   });
 
